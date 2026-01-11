@@ -5,7 +5,7 @@ import '../styles/Projects.css';
 import permitSystem1 from '../assets/images/permit-system.png';
 import permitSystem2 from '../assets/images/permit-system-2.png';
 import diabetesImg from '../assets/images/diabetes-readmission.png';
-import aircraftImg from '../assets/images/aircraft-incidents.png';
+import aircraftImg from '../assets/images/aircraft-incidents.pdf';
 import calendarImg from '../assets/images/calendar-system.png';
 import lightEmAllImg from '../assets/images/light-em-all.png';
 import connectionsImg from '../assets/images/connections-game.png';

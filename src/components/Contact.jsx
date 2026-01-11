@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/Contact.css';
+import resumePDF from '../assets/documents/Eason_Xie_Resume.pdf';
 
 const Contact = () => {
   const contactInfo = [
@@ -45,8 +46,9 @@ const Contact = () => {
       icon: '📄',
       title: 'Download Resume',
       description: 'View my full resume',
-      link: '/assets/documents/Eason_Xie_Resume.pdf',
-      color: 'blue'
+      link: resumePDF,
+      color: 'blue',
+      download: true
     },
     {
       icon: '💬',
@@ -144,7 +146,7 @@ const Contact = () => {
                       className={`quick-action-card ${action.color}`}
                       target={action.link.startsWith('http') ? '_blank' : '_self'}
                       rel="noopener noreferrer"
-                      download={action.link.includes('.pdf') ? true : undefined}
+                      download={action.download ? 'Eason_Xie_Resume.pdf' : undefined}
                   >
                     <div className="quick-action-icon">{action.icon}</div>
                     <h4>{action.title}</h4>

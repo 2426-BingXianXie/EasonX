@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import '../styles/Projects.css';
 
+// Import all project images
+import permitSystem1 from '../assets/images/permit-system.png';
+import permitSystem2 from '../assets/images/permit-system-2.png';
+import diabetesImg from '../assets/images/diabetes-readmission.png';
+import aircraftImg from '../assets/images/aircraft-incidents.png';
+import calendarImg from '../assets/images/calendar-system.png';
+import lightEmAllImg from '../assets/images/light-em-all.png';
+import connectionsImg from '../assets/images/connections-game.png';
+import ztypeImg from '../assets/images/ztype-game.png';
+
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [expandedProjects, setExpandedProjects] = useState({});
@@ -51,7 +61,7 @@ const Projects = () => {
         "Building industry-standard application workflow with normalized database schema",
         "Developing comprehensive backend services and responsive frontend interface"
       ],
-      technologies: ["Java 21", "Spring Boot", "React", "JavaScript", "R", "Python", "MySQL", "REST API"],
+      technologies: ["Java 21", "Spring Boot", "React", "JavaScript", "h2", "REST API"],
       features: [
         "Role-based access control for applicants, inspectors, and administrators",
         "Real-time address validation using integrated map APIs",
@@ -62,10 +72,7 @@ const Projects = () => {
       ],
       github: "https://github.com/2426-BingXianXie/Application",
       demo: null,
-      images: [
-        "/assets/images/permit-system.png",
-        "/assets/images/permit-system-2.png"
-      ],
+      images: [permitSystem1, permitSystem2],
       imageLabels: [
         "Main Dashboard",
         "Permit Application Form"
@@ -78,7 +85,7 @@ const Projects = () => {
       title: "Diabetes Hospital Readmission Analysis",
       category: "data-science",
       status: "Completed",
-      timeline: "November 2024 - Present",
+      timeline: "September 2025 - December 2025",
       type: "Personal Project",
       description: "Interactive data visualization platform analyzing patterns in diabetic patient hospital readmissions. Built to help healthcare administrators identify factors contributing to readmissions and improve patient outcomes while reducing healthcare costs.",
       detailedDescription: "Developed a comprehensive web-based analytics platform using D3.js to analyze survey data from 10,000+ diabetic patient readmissions. The system enables healthcare stakeholders to explore correlations between patient demographics, medication regimens, hospital stay duration, and readmission likelihood through dynamic, interactive visualizations. Features multi-dimensional filtering capabilities, statistical analysis tools, and responsive design for accessibility across devices.",
@@ -102,9 +109,9 @@ const Projects = () => {
         "Demographic breakdown visualizations",
         "Healthcare outcomes analysis"
       ],
-      github: "https://github.com/2426-BingXianXie/ReadmissionsVisualization",
-      demo: "https://2426-bingxianxie.github.io/ReadmissionsVisualization/",
-      image: "/assets/images/diabetes-readmission.png",
+      github: "https://github.com/your-username/diabetes-readmission",
+      demo: "https://your-username.github.io/diabetes-readmission",
+      image: diabetesImg,
       icon: "🏥",
       priority: "standard",
       hideGithub: false
@@ -140,7 +147,7 @@ const Projects = () => {
       ],
       github: "https://github.com/your-username/aircraft-incidents",
       demo: null,
-      image: "/assets/images/aircraft-incidents.pdf",
+      image: aircraftImg,
       icon: "✈️",
       priority: "standard",
       hideGithub: true
@@ -173,7 +180,7 @@ const Projects = () => {
       ],
       github: "https://github.com/your-username/multi-calendar",
       demo: null,
-      image: "/assets/images/calendar-system.png",
+      image: calendarImg,
       icon: "📅",
       priority: "standard",
       hideGithub: true
@@ -205,7 +212,7 @@ const Projects = () => {
       ],
       github: "https://github.com/your-username/light-em-all",
       demo: null,
-      image: "/assets/images/light-em-all.png",
+      image: lightEmAllImg,
       icon: "💡",
       priority: "standard",
       hideGithub: true
@@ -237,7 +244,7 @@ const Projects = () => {
       ],
       github: "https://github.com/your-username/connections-game",
       demo: null,
-      image: "/assets/images/connections-game.png",
+      image: connectionsImg,
       icon: "🔗",
       priority: "standard",
       hideGithub: true
@@ -269,7 +276,7 @@ const Projects = () => {
       ],
       github: "https://github.com/your-username/ztype-game",
       demo: null,
-      image: "/assets/images/ztype-game.png",
+      image: ztypeImg,
       icon: "⌨️",
       priority: "standard",
       hideGithub: true

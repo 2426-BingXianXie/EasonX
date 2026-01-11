@@ -1,11 +1,13 @@
 import React from 'react';
 import '../styles/Hero.css';
+import profilePhoto from '../assets/images/profile-photo.jpg';
+import resumePDF from '../assets/documents/Eason_Xie_Resume.pdf';
 
 const Hero = () => {
   const downloadResume = () => {
     // Create a link to download the resume PDF
     const link = document.createElement('a');
-    link.href = '/assets/documents/Eason_Xie_Resume.pdf';
+    link.href = resumePDF;
     link.download = 'Eason_Xie_Resume.pdf';
     link.click();
   };
@@ -24,7 +26,7 @@ const Hero = () => {
             {/* Profile Image */}
             <div className="hero-image">
               <img
-                  src="/assets/images/profile-photo.jpg"
+                  src={profilePhoto}
                   alt="Eason (BingXian) Xie"
                   className="profile-img"
               />
@@ -47,8 +49,12 @@ const Hero = () => {
               {/* Key Stats */}
               <div className="hero-stats">
                 <div className="stat">
-                  <span className="stat-number">3.6</span>
+                  <span className="stat-number">3.65</span>
                   <span className="stat-label">GPA</span>
+                </div>
+                <div className="stat">
+                  <span className="stat-number">500+</span>
+                  <span className="stat-label">AI Samples</span>
                 </div>
                 <div className="stat">
                   <span className="stat-number">10,000+</span>
@@ -76,7 +82,7 @@ const Hero = () => {
               {/* Social Links */}
               <div className="hero-social">
                 <a
-                    href="https://linkedin.com/in/your-linkedin"
+                    href="https://www.linkedin.com/in/bingxian-xie"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="social-link"
@@ -84,7 +90,7 @@ const Hero = () => {
                   LinkedIn
                 </a>
                 <a
-                    href="https://github.com/your-github"
+                    href="https://www.github.com/2426-BingXianXie"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="social-link"
@@ -92,7 +98,7 @@ const Hero = () => {
                   GitHub
                 </a>
                 <a
-                    href="mailto:2153366728xie@gmail.com"
+                    href="mailto:xie.bingx@northeastern.edu"
                     className="social-link"
                 >
                   Email
@@ -107,6 +113,11 @@ const Hero = () => {
             </div>
           </div>
 
+          {/* Scroll Indicator */}
+          <div className="scroll-indicator">
+            <div className="scroll-arrow">↓</div>
+            <span>Scroll to explore</span>
+          </div>
         </div>
       </section>
   );

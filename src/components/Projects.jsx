@@ -237,7 +237,7 @@ const Projects = () => {
         "Game state management",
         "Win condition detection"
       ],
-      github: "https://github.com/2426-BingXianXie/LightEmAll-Game",
+      github: "https://github.com/2426-BingXianXie/LightEmAll",
       demo: null,
       image: lightEmAllImg,
       icon: "💡",
@@ -268,7 +268,7 @@ const Projects = () => {
         "Progress tracking",
         "Hint system"
       ],
-      github: "https://github.com/2426-BingXianXie/Connections-Game",
+      github: "https://github.com/2426-BingXianXie/Connections",
       demo: null,
       image: connectionsImg,
       icon: "🔗",
@@ -299,7 +299,7 @@ const Projects = () => {
         "Progressive difficulty",
         "Score tracking"
       ],
-      github: "https://github.com/2426-BingXianXie/ZType-Game",
+      github: "https://github.com/2426-BingXianXie/ZType",
       demo: null,
       image: ztypeImg,
       icon: "⌨️",

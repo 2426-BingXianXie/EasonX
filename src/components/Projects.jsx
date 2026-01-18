@@ -157,7 +157,7 @@ const Projects = () => {
         "Created comprehensive testing framework validating data integrity, referential consistency, and quality metrics",
         "Built statistical analysis reports generating insights on temporal trends and airline performance"
       ],
-      technologies: ["R", "MySQL", "RMySQL", "DBI", "Data Processing", "Database Design", "ETL", "Statistical Analysis"],
+      technologies: ["R", "MySQL", "HTML", "Data Processing", "Database Design", "Statistical Analysis"],
       features: [
         "Normalized 3NF database schema design",
         "Automated ETL pipeline with batch processing",
@@ -206,7 +206,7 @@ const Projects = () => {
         "Comprehensive unit testing coverage",
         "Collaborative development using pair programming"
       ],
-      github: "https://github.com/2426-BingXianXie/Multi-Calendar-System",
+      github: "https://github.com/2426-BingXianXie/Calendars",
       demo: null,
       image: calendarImg,
       icon: "📅",

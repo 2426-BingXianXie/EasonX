@@ -5,7 +5,9 @@ import '../styles/Projects.css';
 import permitSystem1 from '../assets/images/permit-system.png';
 import permitSystem2 from '../assets/images/permit-system-2.png';
 import diabetesImg from '../assets/images/diabetes-readmission.png';
-import aircraftImg from '../assets/images/aircraft-incidents.pdf';
+import aircraftImg1 from '../assets/images/aircraft-incidents-1.png';
+import aircraftImg2 from '../assets/images/aircraft-incidents-2.png';
+import aircraftImg3 from '../assets/images/aircraft-incidents-3.png';
 import calendarImg from '../assets/images/calendar-system.png';
 import lightEmAllImg from '../assets/images/light-em-all.png';
 import connectionsImg from '../assets/images/connections-game.png';
@@ -16,6 +18,7 @@ const Projects = () => {
   const [expandedProjects, setExpandedProjects] = useState({});
   const [expandedTech, setExpandedTech] = useState({});
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [projectImageIndices, setProjectImageIndices] = useState({});
 
   const toggleFeatures = (projectId) => {
     setExpandedProjects(prev => ({
@@ -41,6 +44,27 @@ const Projects = () => {
 
   const goToImage = (index) => {
     setCurrentImageIndex(index);
+  };
+
+  const nextProjectImage = (projectId, imagesLength) => {
+    setProjectImageIndices(prev => ({
+      ...prev,
+      [projectId]: ((prev[projectId] || 0) + 1) % imagesLength
+    }));
+  };
+
+  const prevProjectImage = (projectId, imagesLength) => {
+    setProjectImageIndices(prev => ({
+      ...prev,
+      [projectId]: ((prev[projectId] || 0) - 1 + imagesLength) % imagesLength
+    }));
+  };
+
+  const goToProjectImage = (projectId, index) => {
+    setProjectImageIndices(prev => ({
+      ...prev,
+      [projectId]: index
+    }));
   };
 
   const projects = [
@@ -109,12 +133,11 @@ const Projects = () => {
         "Demographic breakdown visualizations",
         "Healthcare outcomes analysis"
       ],
-      github: "https://github.com/your-username/diabetes-readmission",
-      demo: "https://your-username.github.io/diabetes-readmission",
+      github: "https://github.com/2426-BingXianXie/ReadmissionsVisualization",
+      demo: "https://2426-bingxianxie.github.io/ReadmissionsVisualization/",
       image: diabetesImg,
       icon: "🏥",
-      priority: "standard",
-      hideGithub: false
+      priority: "standard"
     },
     {
       id: 3,
@@ -145,12 +168,17 @@ const Projects = () => {
         "Transaction management and rollback capabilities",
         "Multi-table JOIN queries for complex analytics"
       ],
-      github: "https://github.com/your-username/aircraft-incidents",
+      github: "https://github.com/2426-BingXianXie/Airplane-Incident-Data-Visualization-Reports",
       demo: null,
-      image: aircraftImg,
+      images: [aircraftImg1, aircraftImg2, aircraftImg3],
+      imageLabels: [
+        "Database Schema Overview",
+        "Data Analysis Results",
+        "Statistical Reports",
+        "Performance Metrics"
+      ],
       icon: "✈️",
-      priority: "standard",
-      hideGithub: true
+      priority: "standard"
     },
     {
       id: 4,
@@ -171,19 +199,18 @@ const Projects = () => {
       ],
       technologies: ["Java 11", "Swing", "MVC Architecture", "Design Patterns", "GUI Development"],
       features: [
-        "Implemented MVC architecture with clean separation of concerns",
+        "MVC architecture with clean separation of concerns",
         "Advanced event management supporting recurring patterns",
         "Multi-timezone support with automatic conversions",
         "Robust data persistence and retrieval mechanisms",
         "Comprehensive unit testing coverage",
         "Collaborative development using pair programming"
       ],
-      github: "https://github.com/your-username/multi-calendar",
+      github: "https://github.com/2426-BingXianXie/Multi-Calendar-System",
       demo: null,
       image: calendarImg,
       icon: "📅",
-      priority: "standard",
-      hideGithub: true
+      priority: "standard"
     },
     {
       id: 5,
@@ -210,12 +237,11 @@ const Projects = () => {
         "Game state management",
         "Win condition detection"
       ],
-      github: "https://github.com/your-username/light-em-all",
+      github: "https://github.com/2426-BingXianXie/LightEmAll-Game",
       demo: null,
       image: lightEmAllImg,
       icon: "💡",
-      priority: "standard",
-      hideGithub: true
+      priority: "standard"
     },
     {
       id: 6,
@@ -242,12 +268,11 @@ const Projects = () => {
         "Progress tracking",
         "Hint system"
       ],
-      github: "https://github.com/your-username/connections-game",
+      github: "https://github.com/2426-BingXianXie/Connections-Game",
       demo: null,
       image: connectionsImg,
       icon: "🔗",
-      priority: "standard",
-      hideGithub: true
+      priority: "standard"
     },
     {
       id: 7,
@@ -274,12 +299,11 @@ const Projects = () => {
         "Progressive difficulty",
         "Score tracking"
       ],
-      github: "https://github.com/your-username/ztype-game",
+      github: "https://github.com/2426-BingXianXie/ZType-Game",
       demo: null,
       image: ztypeImg,
       icon: "⌨️",
-      priority: "standard",
-      hideGithub: true
+      priority: "standard"
     }
   ];
 
@@ -438,12 +462,62 @@ const Projects = () => {
           <div className="projects-grid">
             {filteredProjects.filter(p => p.priority !== 'featured').map(project => (
                 <div key={project.id} className="project-card">
-                  <div className="project-image">
-                    <img src={project.image} alt={project.title} />
-                    <div className="project-overlay">
-                      <div className="project-icon">{project.icon}</div>
-                    </div>
-                  </div>
+                  {/* Project has multiple images (slider) */}
+                  {project.images ? (
+                      <div className="project-image-slider">
+                        <div className="slider-container">
+                          <img
+                              src={project.images[projectImageIndices[project.id] || 0]}
+                              alt={`${project.title} - ${project.imageLabels[projectImageIndices[project.id] || 0]}`}
+                              className="slider-image"
+                          />
+
+                          <div className="image-label">
+                            {project.imageLabels[projectImageIndices[project.id] || 0]}
+                          </div>
+
+                          {project.images.length > 1 && (
+                              <>
+                                <button
+                                    onClick={() => prevProjectImage(project.id, project.images.length)}
+                                    className="slider-btn prev-btn"
+                                    aria-label="Previous image"
+                                >
+                                  ←
+                                </button>
+                                <button
+                                    onClick={() => nextProjectImage(project.id, project.images.length)}
+                                    className="slider-btn next-btn"
+                                    aria-label="Next image"
+                                >
+                                  →
+                                </button>
+                              </>
+                          )}
+                        </div>
+
+                        {project.images.length > 1 && (
+                            <div className="slider-indicators">
+                              {project.images.map((_, idx) => (
+                                  <button
+                                      key={idx}
+                                      onClick={() => goToProjectImage(project.id, idx)}
+                                      className={`indicator-dot ${(projectImageIndices[project.id] || 0) === idx ? 'active' : ''}`}
+                                      aria-label={`Go to image ${idx + 1}`}
+                                  />
+                              ))}
+                            </div>
+                        )}
+                      </div>
+                  ) : (
+                       /* Project has single image */
+                       <div className="project-image">
+                         <img src={project.image} alt={project.title} />
+                         <div className="project-overlay">
+                           <div className="project-icon">{project.icon}</div>
+                         </div>
+                       </div>
+                   )}
 
                   <div className="project-content">
                     <div className="project-header">
@@ -509,7 +583,7 @@ const Projects = () => {
                     </div>
 
                     <div className="project-actions">
-                      {project.github && !project.hideGithub && (
+                      {project.github && (
                           <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
                             View Code
                           </a>
@@ -518,18 +592,6 @@ const Projects = () => {
                           <a href={project.demo} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
                             Live Demo
                           </a>
-                      )}
-                      {project.hideGithub && (
-                          <div className="academic-section">
-                            <div className="academic-notice">
-                              <span className="notice-icon">🎓</span>
-                              <span className="notice-text">Academic Project</span>
-                            </div>
-                            <p className="academic-note">
-                              Due to academic integrity policies, the code for this coursework project is not publicly available.
-                              If you're interested in reviewing the implementation, please <a href={`mailto:xie.bingx@northeastern.edu?subject=Code Review Request - ${project.title}`} className="contact-link">contact me</a> to request access.
-                            </p>
-                          </div>
                       )}
                     </div>
                   </div>

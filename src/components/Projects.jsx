@@ -12,6 +12,7 @@ import calendarImg from '../assets/images/calendar-system.png';
 import lightEmAllImg from '../assets/images/light-em-all.png';
 import connectionsImg from '../assets/images/connections-game.png';
 import ztypeImg from '../assets/images/ztype-game.png';
+import settingsImg from '../assets/images/settings-1.png';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -67,9 +68,8 @@ const Projects = () => {
     }));
   };
 
-  const projects = [
+  const projectsData = [
     {
-      id: 1,
       title: "Construction Permit Management System",
       category: "full-stack",
       status: "In Development",
@@ -105,7 +105,40 @@ const Projects = () => {
       priority: "featured"
     },
     {
-      id: 2,
+      title: "Settings Management System",
+      category: "full-stack",
+      status: "Completed",
+      timeline: "January 2026",
+      type: "Personal Project",
+      description: "A visual configuration management platform that transforms complex JSON editing into an intuitive block-based interface. Built to eliminate syntax errors that non-technical users frequently encounter when editing raw configuration data.",
+      detailedDescription: "Inspired by the visual programming paradigm of Scratch and Code.org, this system features a block-based JSON editor with type-specific input controls, real-time inline validation with contextual error messages, and dynamic field manipulation. JSON syntax elements are rendered as non-editable visual components, preventing syntax errors while maintaining full editing capability. The backend provides a robust REST API with comprehensive test coverage across all endpoints.",
+      problem: "Non-technical users frequently introduced JSON syntax errors when editing raw configuration data, causing API failures, system downtime, and user frustration.",
+      solution: "Designed and built a visual block-based JSON editor that abstracts away syntax complexity while providing powerful editing capabilities with real-time validation.",
+      achievements: [
+        "Designed visual block-based JSON editor inspired by Scratch/Code.org paradigm for non-technical users",
+        "Implemented type-specific input controls with real-time inline validation and contextual error messages",
+        "Built dynamic field add/remove functionality while rendering JSON syntax as non-editable visual components",
+        "Achieved comprehensive API test coverage across all five REST endpoints including edge cases",
+        "Created fully isolated, parallelizable tests using Vitest and Supertest for reliable CI/CD integration"
+      ],
+      technologies: ["Node.js", "Express", "React", "SQLite", "Docker", "Vitest", "Supertest", "REST API"],
+      features: [
+        "Visual block-based JSON editor interface",
+        "Type-specific input controls (string, number, boolean, array, object)",
+        "Real-time inline validation with contextual error messages",
+        "Dynamic field add/remove functionality",
+        "Non-editable JSON syntax visual components",
+        "Comprehensive REST API with full CRUD operations",
+        "Docker containerization for easy deployment",
+        "100% test coverage with isolated, parallelizable tests"
+      ],
+      github: "https://github.com/2426-BingXianXie/Setting-Management",
+      demo: null,
+      image: settingsImg,
+      icon: "⚙️",
+      priority: "standard"
+    },
+    {
       title: "Diabetes Hospital Readmission Analysis",
       category: "data-science",
       status: "Completed",
@@ -122,7 +155,7 @@ const Projects = () => {
         "Created dynamic filtering system enabling exploration of readmission patterns across age groups, medication types, and prior admission history",
         "Enabled identification of high-risk patient populations and intervention opportunities through visual analytics"
       ],
-      technologies: ["JavaScript", "D3.js", "HTML5", "CSS3", "Data Visualization", "Statistical Analysis", "Healthcare Analytics"],
+      technologies: ["JavaScript", "D3.js", "HTML", "CSS", "Data Visualization", "Statistical Analysis", "Healthcare Analytics"],
       features: [
         "Interactive scatterplot visualizations with D3.js",
         "Dynamic filtering by demographics and clinical variables",
@@ -140,7 +173,6 @@ const Projects = () => {
       priority: "standard"
     },
     {
-      id: 3,
       title: "Aircraft Incidents Analysis System",
       category: "data-science",
       status: "Completed",
@@ -181,7 +213,6 @@ const Projects = () => {
       priority: "standard"
     },
     {
-      id: 4,
       title: "Multi-Calendar System",
       category: "desktop",
       status: "Completed",
@@ -213,7 +244,6 @@ const Projects = () => {
       priority: "standard"
     },
     {
-      id: 5,
       title: "Light Em All Puzzle Game",
       category: "game",
       status: "Completed",
@@ -244,7 +274,6 @@ const Projects = () => {
       priority: "standard"
     },
     {
-      id: 6,
       title: "Connections Word Game",
       category: "game",
       status: "Completed",
@@ -275,7 +304,6 @@ const Projects = () => {
       priority: "standard"
     },
     {
-      id: 7,
       title: "ZType Typing Game",
       category: "game",
       status: "Completed",
@@ -306,6 +334,12 @@ const Projects = () => {
       priority: "standard"
     }
   ];
+
+  // Auto-generate IDs based on array index
+  const projects = projectsData.map((project, index) => ({
+    ...project,
+    id: index + 1
+  }));
 
   const categories = [
     { id: 'all', name: 'All Projects' },
@@ -509,15 +543,22 @@ const Projects = () => {
                             </div>
                         )}
                       </div>
+                  ) : project.image ? (
+                      /* Project has single image */
+                      <div className="project-image">
+                        <img src={project.image} alt={project.title} />
+                        <div className="project-overlay">
+                          <div className="project-icon">{project.icon}</div>
+                        </div>
+                      </div>
                   ) : (
-                       /* Project has single image */
-                       <div className="project-image">
-                         <img src={project.image} alt={project.title} />
-                         <div className="project-overlay">
-                           <div className="project-icon">{project.icon}</div>
-                         </div>
-                       </div>
-                   )}
+                          /* Project has no image - show icon placeholder */
+                          <div className="project-image placeholder">
+                            <div className="project-overlay visible">
+                              <div className="project-icon">{project.icon}</div>
+                            </div>
+                          </div>
+                      )}
 
                   <div className="project-content">
                     <div className="project-header">

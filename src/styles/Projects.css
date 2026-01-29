@@ -582,6 +582,16 @@
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Placeholder for projects without images */
+.project-image.placeholder {
+    height: 200px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.project-overlay.visible {
+    opacity: 1;
+}
+
 .project-content {
     padding: 2rem;
 }
@@ -793,6 +803,25 @@
     padding: 0.25rem;
     background: rgba(0, 0, 0, 0.03);
     border-radius: 0.5rem;
+}
+
+/* Project Image Slider for Cards */
+.project-image-slider {
+    position: relative;
+}
+
+.project-image-slider .slider-container {
+    height: 200px;
+    border-radius: 0;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+}
+
+.project-image-slider .slider-indicators {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
 }
 
 /* Responsive Design */

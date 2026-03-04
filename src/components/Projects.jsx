@@ -8,7 +8,10 @@ import diabetesImg from '../assets/images/diabetes-readmission.png';
 import aircraftImg1 from '../assets/images/aircraft-incidents-1.png';
 import aircraftImg2 from '../assets/images/aircraft-incidents-2.png';
 import aircraftImg3 from '../assets/images/aircraft-incidents-3.png';
-import calendarImg from '../assets/images/calendar-system.png';
+import calendarImg1 from '../assets/images/calendar-system-1.png';
+import calendarImg2 from '../assets/images/calendar-system-2.png';
+import calendarImg3 from '../assets/images/calendar-system-3.png';
+import calendarImg4 from '../assets/images/calendar-system-4.png';
 import lightEmAllImg from '../assets/images/light-em-all.png';
 import connectionsImg from '../assets/images/connections-game.png';
 import ztypeImg from '../assets/images/ztype-game.png';
@@ -274,7 +277,13 @@ const Projects = () => {
       ],
       github: "https://github.com/2426-BingXianXie/Calendars",
       demo: null,
-      image: calendarImg,
+      images: [calendarImg1, calendarImg2, calendarImg3, calendarImg4],
+      imageLabels: [
+        "Calendar view",
+        "Event management",
+        "Multi-calendar",
+        "Scheduling"
+      ],
       icon: "📅",
       priority: "standard"
     },

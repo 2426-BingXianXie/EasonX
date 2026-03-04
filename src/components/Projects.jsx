@@ -112,22 +112,22 @@ const Projects = () => {
       status: "Completed",
       timeline: "March 2026",
       type: "Personal Project",
-      description: "Interactive, tablet-friendly snooker scoring web app designed to replace manual scoreboards in local clubs.",
-      detailedDescription: "Built with React and Vite, this single-page application tracks player frame scores, current breaks, reds remaining, fouls, and match progress in real time. The interface is optimized for tablets placed beside the table, with large touch targets, dark-room friendly contrast, and snooker-specific rules such as red–colour sequencing and frame-based match flow.",
-      problem: "Many local snooker venues still rely on manual wooden scoreboards, which are error-prone and hard to see across the room.",
-      solution: "Designed a modern digital scoreboard that runs in any browser, enforces basic snooker scoring rules, and provides clear visual feedback for players and referees.",
+      description: "Interactive, tablet-friendly snooker scoring system with a shared online room model, designed to replace manual scoreboards in local clubs.",
+      detailedDescription: "Implemented a full-stack real-time scoreboard where players, referees, and spectators join the same match using role-specific access codes. The React + Vite frontend tracks frame scores, current breaks, reds remaining, fouls, and match progress, while a Node.js WebSocket backend manages room state, synchronizes actions across devices, and enforces snooker-specific rules such as red–colour sequencing and best-of match flow.",
+      problem: "Many local snooker venues still rely on manual wooden scoreboards, which are error-prone, difficult to read from a distance, and cannot be shared across multiple devices.",
+      solution: "Designed a modern digital scoreboard with a role-based online room model so players can focus on strategy while referees and spectators collaboratively maintain an accurate, always-in-sync score view from their own devices.",
       achievements: [
-        "Implemented snooker-specific scoring logic including red–colour sequencing and foul handling",
-        "Built frame and match management with configurable 'best of N' and automatic match winner detection",
-        "Designed high-contrast, touch-friendly UI suitable for dim snooker rooms and tablet devices"
+        "Implemented snooker-specific scoring logic including red–colour sequencing, foul handling, and configurable best-of match structure",
+        "Built a Node.js WebSocket backend that synchronizes match state across players, referees, and spectators in real time",
+        "Designed a high-contrast, touch-friendly UI optimized for tablets in dim snooker rooms with clear role and connection status indicators"
       ],
-      technologies: ["React", "JavaScript", "Vite", "CSS", "Responsive Design"],
+      technologies: ["React", "JavaScript", "Vite", "Node.js", "WebSocket", "CSS", "Responsive Design"],
       features: [
-        "Two-player frame and match tracking with current break display",
-        "Buttons for all balls with correct point values and rule-aware sequencing",
-        "Reds remaining counter and undo history for correcting mistakes",
-        "Configurable best-of match format with automatic winner banner",
-        "In-app snooker rules summary panel with external reference link"
+        "Two-player frame and match tracking with current break display and match winner detection",
+        "Role-based online rooms with separate access codes for players, referee, and viewers",
+        "Buttons for all balls with correct point values and rule-aware sequencing, including reds remaining counter",
+        "Undoable scoring history and configurable best-of match format that can be reset without changing the room",
+        "In-app snooker rules summary panel styled to match the scoreboard and linked to a longer reference"
       ],
       github: "https://github.com/2426-BingXianXie/SnookerScoreboard",
       demo: null,

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Projects.css';
 
 // Import all project images
-import permitSystem1 from '../assets/images/permit-system.png';
+import permitSystem1 from '../assets/images/permit-system-1.png';
 import permitSystem2 from '../assets/images/permit-system-2.png';
 import diabetesImg from '../assets/images/diabetes-readmission.png';
 import aircraftImg1 from '../assets/images/aircraft-incidents-1.png';
@@ -25,6 +25,41 @@ const Projects = () => {
   const [expandedTech, setExpandedTech] = useState({});
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [projectImageIndices, setProjectImageIndices] = useState({});
+  const [lightbox, setLightbox] = useState({ open: false, images: [], labels: [], currentIndex: 0, title: '' });
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') setLightbox(prev => ({ ...prev, open: false }));
+    };
+    if (lightbox.open) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
+  }, [lightbox.open]);
+
+  const openLightbox = (images, labels, currentIndex, title) => {
+    setLightbox({ open: true, images, labels: labels || [], currentIndex, title });
+  };
+
+  const closeLightbox = () => setLightbox(prev => ({ ...prev, open: false }));
+
+  const lightboxPrev = () => {
+    setLightbox(prev => ({
+      ...prev,
+      currentIndex: (prev.currentIndex - 1 + prev.images.length) % prev.images.length
+    }));
+  };
+
+  const lightboxNext = () => {
+    setLightbox(prev => ({
+      ...prev,
+      currentIndex: (prev.currentIndex + 1) % prev.images.length
+    }));
+  };
 
   const toggleFeatures = (projectId) => {
     setExpandedProjects(prev => ({
@@ -77,27 +112,28 @@ const Projects = () => {
     {
       title: "Construction Permit Management System",
       category: "full-stack",
-      status: "In Development",
-      timeline: "July 2025 - Present",
+      status: "Completed",
+      timeline: "July 2025 - March 2026",
       type: "Self-Development",
-      description: "This full-stack web application addresses the municipal permit processing inefficiencies I identified during my internship at the City of Quincy's Inspectional Services. Having processed over ten thousand permit records manually, I witnessed firsthand the challenges citizens and staff face with outdated systems.",
-      detailedDescription: "The system features a comprehensive architecture using Java 21 Spring Boot for the backend and React JavaScript for the frontend, supporting multiple user roles including applicants, inspectors, and administrators. I've integrated R and Python scripts to handle map API requests, enabling real-time address validation and intelligent filtering functionality. The application uses a normalized database schema deployed on Aiven cloud infrastructure, ensuring scalability and reliability. By implementing role-based access control and an intuitive interface, this system transforms a traditionally complex bureaucratic process into a streamlined, user-friendly experience that serves real people with real needs.",
-      problem: "Manual permit processing created inefficiencies in handling municipal records and compliance monitoring.",
-      solution: "Architecting comprehensive permit management system with scalable multi-user architecture and role-based access control.",
+      description: "A full-stack rebuild of the City of Quincy, MA online permitting portal that turns paper-heavy building, electrical, and zoning workflows into a modern self-service web experience for residents and staff.",
+      detailedDescription: "The application mirrors Quincy’s real Inspectional Services permit catalog with 19 permit types, each backed by its own dynamic form schema that matches city and state requirements (building, electrical, gas, short-term rental, etc.). The backend is a Java 21 Spring Boot 3 service with Spring Security + JWT, role-based access control for applicants and staff, and a REST API for permit types, applications, documents, and property records. The React 18 + Vite frontend provides a polished municipal UI where residents can register, apply for permits, upload supporting documents, and track application status, while staff users review submissions, add notes, and manage approvals from a dedicated queue.",
+      problem: "The existing municipal permit process relied on a mix of PDFs, email, and manual data entry, making it slow for residents to apply and difficult for staff to track thousands of applications consistently.",
+      solution: "Designed and implemented a full-stack permit portal that centralizes applications, exposes a clear workflow for residents and staff, and encodes real Quincy MA permit requirements directly into the data and UI layers.",
       achievements: [
-        "Designed scalable multi-user architecture supporting role-based access control",
-        "Integrated R and Python scripts for map API requests enabling address validation and filtering",
-        "Building industry-standard application workflow with normalized database schema",
-        "Developing comprehensive backend services and responsive frontend interface"
+        "Designed a role-based architecture that cleanly separates applicant and staff capabilities while staying stateless using JWT authentication",
+        "Modeled 19 real-world permit types with JSON-backed form schemas that drive the React UI without hardcoding individual forms",
+        "Implemented end-to-end application workflows including draft saving, submission, staff review, status transitions, and staff notes",
+        "Built supporting experiences like a Document Center and Property Records search to mirror how city staff actually work with permits day to day"
       ],
-      technologies: ["Java 21", "Spring Boot", "React", "JavaScript", "h2", "REST API"],
+      technologies: ["React 18", "Vite", "React Router", "Java 21", "Spring Boot 3", "Spring Security", "JWT", "Spring Data JPA", "H2", "PostgreSQL", "REST API"],
       features: [
-        "Role-based access control for applicants, inspectors, and administrators",
-        "Real-time address validation using integrated map APIs",
-        "Automated workflow tracking from application to approval",
-        "Comprehensive dashboard for monitoring permit status",
-        "Multi-language support for accessibility",
-        "Cloud-deployed database with scalable architecture"
+        "Online permitting for 19 permit types (building, electrical, plumbing, gas, short-term rental, zoning board, and more) seeded from real Quincy MA data",
+        "Dynamic, permit-specific forms driven by backend JSON schemas so each permit has the right fields and validation without duplicating frontend code",
+        "Applicant portal with registration, login, \"My Applications\" dashboard, draft saving, and detailed application view",
+        "Staff portal showing all applications with filtering, status updates (Draft → Submitted → Under Review → Approved/Rejected), and internal staff notes",
+        "Document Center for browsing and downloading reference documents by category and search term",
+        "Property Records search with address/parcel lookup to connect applications to real properties",
+        "Secure JWT-based authentication with Spring Security and protected REST endpoints for application and document operations"
       ],
       github: "https://github.com/2426-BingXianXie/Application",
       demo: null,
@@ -478,7 +514,14 @@ const Projects = () => {
 
                   {/* Image Slider */}
                   <div className="featured-image-slider">
-                    <div className="slider-container">
+                    <div
+                        className="slider-container clickable"
+                        onClick={() => openLightbox(featuredProject.images, featuredProject.imageLabels, currentImageIndex, featuredProject.title)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => e.key === 'Enter' && openLightbox(featuredProject.images, featuredProject.imageLabels, currentImageIndex, featuredProject.title)}
+                        aria-label="Click to view larger"
+                    >
                       <img
                           src={featuredProject.images[currentImageIndex]}
                           alt={`${featuredProject.title} - ${featuredProject.imageLabels[currentImageIndex]}`}
@@ -492,14 +535,14 @@ const Projects = () => {
 
                       {/* Navigation Buttons */}
                       <button
-                          onClick={() => prevImage(featuredProject.images.length)}
+                          onClick={(e) => { e.stopPropagation(); prevImage(featuredProject.images.length); }}
                           className="slider-btn prev-btn"
                           aria-label="Previous image"
                       >
                         ←
                       </button>
                       <button
-                          onClick={() => nextImage(featuredProject.images.length)}
+                          onClick={(e) => { e.stopPropagation(); nextImage(featuredProject.images.length); }}
                           className="slider-btn next-btn"
                           aria-label="Next image"
                       >
@@ -543,7 +586,14 @@ const Projects = () => {
                   {/* Project has multiple images (slider) */}
                   {project.images ? (
                       <div className="project-image-slider">
-                        <div className="slider-container">
+                        <div
+                            className="slider-container clickable"
+                            onClick={() => openLightbox(project.images, project.imageLabels, projectImageIndices[project.id] || 0, project.title)}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => e.key === 'Enter' && openLightbox(project.images, project.imageLabels, projectImageIndices[project.id] || 0, project.title)}
+                            aria-label="Click to view larger"
+                        >
                           <img
                               src={project.images[projectImageIndices[project.id] || 0]}
                               alt={`${project.title} - ${project.imageLabels[projectImageIndices[project.id] || 0]}`}
@@ -557,14 +607,14 @@ const Projects = () => {
                           {project.images.length > 1 && (
                               <>
                                 <button
-                                    onClick={() => prevProjectImage(project.id, project.images.length)}
+                                    onClick={(e) => { e.stopPropagation(); prevProjectImage(project.id, project.images.length); }}
                                     className="slider-btn prev-btn"
                                     aria-label="Previous image"
                                 >
                                   ←
                                 </button>
                                 <button
-                                    onClick={() => nextProjectImage(project.id, project.images.length)}
+                                    onClick={(e) => { e.stopPropagation(); nextProjectImage(project.id, project.images.length); }}
                                     className="slider-btn next-btn"
                                     aria-label="Next image"
                                 >
@@ -589,7 +639,14 @@ const Projects = () => {
                       </div>
                   ) : project.image ? (
                       /* Project has single image */
-                      <div className="project-image">
+                      <div
+                          className="project-image clickable"
+                          onClick={() => openLightbox([project.image], [project.title], 0, project.title)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === 'Enter' && openLightbox([project.image], [project.title], 0, project.title)}
+                          aria-label="Click to view larger"
+                      >
                         <img src={project.image} alt={project.title} />
                         <div className="project-overlay">
                           <div className="project-icon">{project.icon}</div>
@@ -683,6 +740,41 @@ const Projects = () => {
                 </div>
             ))}
           </div>
+
+          {/* Lightbox Modal */}
+          {lightbox.open && (
+              <div className="lightbox-overlay" onClick={closeLightbox} role="dialog" aria-modal="true" aria-label="Image viewer">
+                <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+                  <button className="lightbox-close" onClick={closeLightbox} aria-label="Close">×</button>
+                  {lightbox.images.length > 1 && (
+                      <>
+                        <button className="lightbox-nav lightbox-prev" onClick={lightboxPrev} aria-label="Previous image">←</button>
+                        <button className="lightbox-nav lightbox-next" onClick={lightboxNext} aria-label="Next image">→</button>
+                      </>
+                  )}
+                  <img
+                      src={lightbox.images[lightbox.currentIndex]}
+                      alt={lightbox.labels[lightbox.currentIndex] || lightbox.title}
+                      className="lightbox-image"
+                  />
+                  {(lightbox.labels[lightbox.currentIndex] || lightbox.title) && (
+                      <div className="lightbox-label">{lightbox.labels[lightbox.currentIndex] || lightbox.title}</div>
+                  )}
+                  {lightbox.images.length > 1 && (
+                      <div className="lightbox-indicators">
+                        {lightbox.images.map((_, idx) => (
+                            <button
+                                key={idx}
+                                onClick={(e) => { e.stopPropagation(); setLightbox(prev => ({ ...prev, currentIndex: idx })); }}
+                                className={`lightbox-dot ${lightbox.currentIndex === idx ? 'active' : ''}`}
+                                aria-label={`Go to image ${idx + 1}`}
+                            />
+                        ))}
+                      </div>
+                  )}
+                </div>
+              </div>
+          )}
 
           {/* Project Statistics */}
           <div className="projects-stats">

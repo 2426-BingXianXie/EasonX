@@ -18,6 +18,8 @@ import ztypeImg from '../assets/images/ztype-game.png';
 import settingsImg from '../assets/images/settings-1.png';
 import scoreboardImg1 from '../assets/images/scoreboard-1.png';
 import scoreboardImg2 from '../assets/images/scoreboard-2.png';
+import goEstimator1 from '../assets/images/GoEstimator-1.png';
+import goEstimator2 from '../assets/images/GoEstimator-2.png';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -144,6 +146,43 @@ const Projects = () => {
       ],
       icon: "🏗️",
       priority: "featured"
+    },
+    {
+      title: "Go Territory Analyzer",
+      category: "game",
+      status: "Completed",
+      timeline: "March 2026",
+      type: "Personal Project",
+      description: "Web-based Go (Baduk) game with real-time territory estimation, designed to help beginners understand and improve their play through visual feedback.",
+      detailedDescription: "A React + Vite application featuring flood-fill territory detection, influence-based scoring for early-game estimates, move preview (first click shows territory change, second click places stone), and toggleable territory mode. Includes star points (hoshi) at key intersections, live score overview with surrender option, save/load, hints, and undo/redo.",
+      problem: "Beginners struggle to understand territory and scoring in Go, making it hard to evaluate positions and decide when to resign.",
+      solution: "Built an interactive Go analyzer that visualizes estimated territory (black/white/neutral/overlap) in real time, uses influence when no enclosed regions exist, and updates the score after every move so players can make informed decisions.",
+      achievements: [
+        "Implemented flood-fill territory detection with strong/weak/neutral classification and influence-based fallback for early-game scoring",
+        "Designed two-click move flow: preview territory change on first click, place stone on second click",
+        "Added toggleable territory estimation mode with localStorage persistence",
+        "Integrated star points that override territory display except when a player has claimed the point"
+      ],
+      technologies: ["React 19", "Vite 7", "JavaScript", "CSS", "Vitest"],
+      features: [
+        "Real-time territory estimation with black/white/grey markers",
+        "Influence-based scoring when no enclosed territory exists",
+        "Move preview before placement",
+        "Toggle territory estimation on/off",
+        "Star points (hoshi) at 3-3, 4-4, tengen",
+        "Live score overview (territory, captures, totals)",
+        "Surrender, save/load, hints, undo/redo",
+        "9×9, 13×13, 19×19 board sizes"
+      ],
+      github: "https://github.com/2426-BingXianXie/Go-Territory-Estimator",
+      demo: null,
+      images: [goEstimator1, goEstimator2],
+      imageLabels: [
+        "Go board with territory estimation",
+        "Score overview and controls"
+      ],
+      icon: "⚫",
+      priority: "standard"
     },
     {
       title: "Snooker Scoreboard",

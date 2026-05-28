@@ -1,7 +1,19 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import {
+  FiArrowDown,
+  FiDownload,
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiMessageCircle,
+  FiPhone
+} from 'react-icons/fi';
 import '../styles/Hero.css';
 import profilePhoto from '../assets/images/profile-photo.jpg';
 import resumePDF from '../assets/documents/Eason_Xie_Resume.pdf';
+
+const MotionDiv = motion.div;
 
 const Hero = () => {
   const downloadResume = () => {
@@ -23,27 +35,31 @@ const Hero = () => {
       <section id="hero" className="hero">
         <div className="hero-container">
           <div className="hero-content">
-            {/* Profile Image */}
-            <div className="hero-image">
+            <MotionDiv
+                className="hero-image"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: 'easeOut' }}
+            >
               <img
                   src={profilePhoto}
                   alt="Eason (BingXian) Xie"
                   className="profile-img"
               />
-            </div>
+            </MotionDiv>
 
-            {/* Hero Text */}
-            <div className="hero-text">
+            <MotionDiv
+                className="hero-text"
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: 'easeOut', delay: 0.08 }}
+            >
               <h1 className="hero-title">
-                Hi, I'm <span className="name-highlight">Eason Xie</span>
+                Eason Xie builds practical software from messy real-world data.
               </h1>
-              <h2 className="hero-subtitle">
-                Data Science & Full-Stack Developer
-              </h2>
               <p className="hero-description">
-                Northeastern University student passionate about leveraging data science
-                and full-stack development to solve real-world problems. Experienced in
-                AI research, municipal systems optimization, and building scalable applications.
+                Northeastern data science and mathematics student turning research,
+                municipal operations, and full-stack projects into clear systems that people can use.
               </p>
 
               {/* Key Stats */}
@@ -64,18 +80,20 @@ const Hero = () => {
 
               {/* Status */}
               <div className="hero-status">
-                <span className="status-badge">🎓 Expected Graduation: Apr 2028</span>
-                <span className="status-badge">🇺🇸 U.S. Permanent Resident</span>
-                <span className="status-badge">🏆 Dean's List Spring 2025</span>
+                <span className="status-badge">Expected Graduation: Apr 2028</span>
+                <span className="status-badge">U.S. Permanent Resident</span>
+                <span className="status-badge">Dean's List Spring 2025</span>
               </div>
 
               {/* Call to Action Buttons */}
               <div className="hero-actions">
                 <button className="btn btn-primary" onClick={downloadResume}>
-                  📄 Download Resume
+                  <FiDownload aria-hidden="true" />
+                  Download Resume
                 </button>
                 <button className="btn btn-secondary" onClick={scrollToContact}>
-                  💬 Get In Touch
+                  <FiMessageCircle aria-hidden="true" />
+                  Get In Touch
                 </button>
               </div>
 
@@ -86,7 +104,9 @@ const Hero = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="social-link"
+                    aria-label="LinkedIn"
                 >
+                  <FiLinkedin aria-hidden="true" />
                   LinkedIn
                 </a>
                 <a
@@ -94,28 +114,34 @@ const Hero = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="social-link"
+                    aria-label="GitHub"
                 >
+                  <FiGithub aria-hidden="true" />
                   GitHub
                 </a>
                 <a
                     href="mailto:xie.bingx@northeastern.edu"
                     className="social-link"
+                    aria-label="Email"
                 >
+                  <FiMail aria-hidden="true" />
                   Email
                 </a>
                 <a
                     href="tel:+18572729958"
                     className="social-link"
+                    aria-label="Phone"
                 >
+                  <FiPhone aria-hidden="true" />
                   Phone
                 </a>
               </div>
-            </div>
+            </MotionDiv>
           </div>
 
           {/* Scroll Indicator */}
           <div className="scroll-indicator">
-            <div className="scroll-arrow">↓</div>
+            <FiArrowDown aria-hidden="true" />
             <span>Scroll to explore</span>
           </div>
         </div>

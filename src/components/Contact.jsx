@@ -1,39 +1,51 @@
 import React from 'react';
+import {
+  FiClock,
+  FiDownload,
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiMapPin,
+  FiPhone,
+  FiTarget,
+  FiUsers,
+  FiZap
+} from 'react-icons/fi';
 import '../styles/Contact.css';
 import resumePDF from '../assets/documents/Eason_Xie_Resume.pdf';
 
 const Contact = () => {
   const contactInfo = [
     {
-      icon: '📧',
+      icon: FiMail,
       label: 'Email',
       value: 'xie.bingx@northeastern.edu',
       link: 'mailto:xie.bingx@northeastern.edu',
       description: 'Send me an email'
     },
     {
-      icon: '📱',
+      icon: FiPhone,
       label: 'Phone',
       value: '(857) 272-9958',
       link: 'tel:+18572729958',
       description: 'Call or text me'
     },
     {
-      icon: '📍',
+      icon: FiMapPin,
       label: 'Location',
       value: 'Boston, MA',
       link: null,
       description: 'Northeastern University'
     },
     {
-      icon: '💼',
+      icon: FiLinkedin,
       label: 'LinkedIn',
       value: 'linkedin.com/in/bingxian-xie',
       link: 'https://www.linkedin.com/in/bingxian-xie',
       description: 'Professional network'
     },
     {
-      icon: '💻',
+      icon: FiGithub,
       label: 'GitHub',
       value: 'github.com/2426-BingXianXie',
       link: 'https://www.github.com/2426-BingXianXie',
@@ -43,7 +55,7 @@ const Contact = () => {
 
   const quickActions = [
     {
-      icon: '📄',
+      icon: FiDownload,
       title: 'Download Resume',
       description: 'View my full resume',
       link: resumePDF,
@@ -51,21 +63,21 @@ const Contact = () => {
       download: true
     },
     {
-      icon: '💬',
+      icon: FiMail,
       title: 'Email Me',
       description: 'xie.bingx@northeastern.edu',
       link: 'mailto:xie.bingx@northeastern.edu',
       color: 'green'
     },
     {
-      icon: '🔗',
+      icon: FiLinkedin,
       title: 'Connect on LinkedIn',
       description: 'Let\'s network',
       link: 'https://www.linkedin.com/in/bingxian-xie',
       color: 'purple'
     },
     {
-      icon: '📞',
+      icon: FiPhone,
       title: 'Schedule a Call',
       description: '(857) 272-9958',
       link: 'tel:+18572729958',
@@ -85,28 +97,31 @@ const Contact = () => {
 
           {/* Contact Cards Grid */}
           <div className="contact-cards-grid">
-            {contactInfo.map((info, index) => (
-                <div key={index} className="contact-card">
-                  <div className="contact-card-icon">{info.icon}</div>
-                  <div className="contact-card-content">
-                    <h4>{info.label}</h4>
-                    <p className="contact-description">{info.description}</p>
-                    {info.link ? (
-                        <a href={info.link} className="contact-value" target={info.link.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer">
-                          {info.value}
-                        </a>
-                    ) : (
-                         <span className="contact-value">{info.value}</span>
-                     )}
+            {contactInfo.map((info, index) => {
+              const InfoIcon = info.icon;
+              return (
+                  <div key={index} className="contact-card">
+                    <div className="contact-card-icon"><InfoIcon aria-hidden="true" /></div>
+                    <div className="contact-card-content">
+                      <h4>{info.label}</h4>
+                      <p className="contact-description">{info.description}</p>
+                      {info.link ? (
+                          <a href={info.link} className="contact-value" target={info.link.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer">
+                            {info.value}
+                          </a>
+                      ) : (
+                           <span className="contact-value">{info.value}</span>
+                       )}
+                    </div>
                   </div>
-                </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Availability Section */}
           <div className="availability-section">
             <div className="availability-card">
-              <div className="availability-icon">🕐</div>
+              <div className="availability-icon"><FiClock aria-hidden="true" /></div>
               <div className="availability-content">
                 <h3>Availability</h3>
                 <div className="availability-details">
@@ -139,20 +154,23 @@ const Contact = () => {
           <div className="quick-actions-section">
             <h3>Quick Actions</h3>
             <div className="quick-actions-grid">
-              {quickActions.map((action, index) => (
-                  <a
-                      key={index}
-                      href={action.link}
-                      className={`quick-action-card ${action.color}`}
-                      target={action.link.startsWith('http') ? '_blank' : '_self'}
-                      rel="noopener noreferrer"
-                      download={action.download ? 'Eason_Xie_Resume.pdf' : undefined}
-                  >
-                    <div className="quick-action-icon">{action.icon}</div>
-                    <h4>{action.title}</h4>
-                    <p>{action.description}</p>
-                  </a>
-              ))}
+              {quickActions.map((action, index) => {
+                const ActionIcon = action.icon;
+                return (
+                    <a
+                        key={index}
+                        href={action.link}
+                        className={`quick-action-card ${action.color}`}
+                        target={action.link.startsWith('http') ? '_blank' : '_self'}
+                        rel="noopener noreferrer"
+                        download={action.download ? 'Eason_Xie_Resume.pdf' : undefined}
+                    >
+                      <div className="quick-action-icon"><ActionIcon aria-hidden="true" /></div>
+                      <h4>{action.title}</h4>
+                      <p>{action.description}</p>
+                    </a>
+                );
+              })}
             </div>
           </div>
 
@@ -160,7 +178,7 @@ const Contact = () => {
           <div className="looking-for-section">
             <div className="looking-for-grid">
               <div className="looking-for-card">
-                <div className="card-icon">🎯</div>
+                <div className="card-icon"><FiTarget aria-hidden="true" /></div>
                 <h4>What I'm Looking For</h4>
                 <ul>
                   <li>Data Science internships and co-ops</li>
@@ -171,7 +189,7 @@ const Contact = () => {
               </div>
 
               <div className="looking-for-card">
-                <div className="card-icon">💡</div>
+                <div className="card-icon"><FiZap aria-hidden="true" /></div>
                 <h4>How I Can Help</h4>
                 <ul>
                   <li>Data analysis and visualization</li>
@@ -182,7 +200,7 @@ const Contact = () => {
               </div>
 
               <div className="looking-for-card">
-                <div className="card-icon">🤝</div>
+                <div className="card-icon"><FiUsers aria-hidden="true" /></div>
                 <h4>Let's Collaborate</h4>
                 <ul>
                   <li>Open-source projects</li>

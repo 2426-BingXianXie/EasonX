@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FiChevronLeft, FiChevronRight, FiExternalLink, FiGithub, FiMaximize2, FiX } from 'react-icons/fi';
 import '../styles/Projects.css';
 
 // Import all project images
@@ -485,7 +486,7 @@ const Projects = () => {
           {/* Featured Project */}
           {featuredProject && (
               <div className="featured-project">
-                <div className="featured-badge">🌟 Featured Project</div>
+                <div className="featured-badge">Featured Project</div>
                 <div className="featured-content">
                   <div className="featured-info">
                     <div className="project-header">
@@ -509,17 +510,17 @@ const Projects = () => {
                     <div className="project-details">
                       <div className="problem-solution">
                         <div className="detail-section">
-                          <h4>🎯 Problem</h4>
+                          <h4>Problem</h4>
                           <p>{featuredProject.problem}</p>
                         </div>
                         <div className="detail-section">
-                          <h4>💡 Solution</h4>
+                          <h4>Solution</h4>
                           <p>{featuredProject.solution}</p>
                         </div>
                       </div>
 
                       <div className="achievements">
-                        <h4>🏆 Key Achievements</h4>
+                        <h4>Key Achievements</h4>
                         <ul>
                           {featuredProject.achievements.map((achievement, idx) => (
                               <li key={idx}>{achievement}</li>
@@ -529,7 +530,7 @@ const Projects = () => {
                     </div>
 
                     <div className="project-tech">
-                      <h4>🛠️ Technologies Used</h4>
+                      <h4>Technologies Used</h4>
                       <div className="tech-stack">
                         {featuredProject.technologies.map((tech, idx) => (
                             <span key={idx} className="tech-badge">{tech}</span>
@@ -540,11 +541,13 @@ const Projects = () => {
                     <div className="project-actions">
                       {featuredProject.github && (
                           <a href={featuredProject.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                            <FiGithub aria-hidden="true" />
                             View Code
                           </a>
                       )}
                       {featuredProject.demo && (
                           <a href={featuredProject.demo} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                            <FiExternalLink aria-hidden="true" />
                             Live Demo
                           </a>
                       )}
@@ -578,15 +581,16 @@ const Projects = () => {
                           className="slider-btn prev-btn"
                           aria-label="Previous image"
                       >
-                        ←
+                        <FiChevronLeft aria-hidden="true" />
                       </button>
                       <button
                           onClick={(e) => { e.stopPropagation(); nextImage(featuredProject.images.length); }}
                           className="slider-btn next-btn"
                           aria-label="Next image"
                       >
-                        →
+                        <FiChevronRight aria-hidden="true" />
                       </button>
+                      <span className="expand-cue"><FiMaximize2 aria-hidden="true" /></span>
                     </div>
 
                     {/* Indicator Dots */}
@@ -650,14 +654,14 @@ const Projects = () => {
                                     className="slider-btn prev-btn"
                                     aria-label="Previous image"
                                 >
-                                  ←
+                                  <FiChevronLeft aria-hidden="true" />
                                 </button>
                                 <button
                                     onClick={(e) => { e.stopPropagation(); nextProjectImage(project.id, project.images.length); }}
                                     className="slider-btn next-btn"
                                     aria-label="Next image"
                                 >
-                                  →
+                                  <FiChevronRight aria-hidden="true" />
                                 </button>
                               </>
                           )}
@@ -688,7 +692,7 @@ const Projects = () => {
                       >
                         <img src={project.image} alt={project.title} />
                         <div className="project-overlay">
-                          <div className="project-icon">{project.icon}</div>
+                          <div className="project-icon"><FiMaximize2 aria-hidden="true" /></div>
                         </div>
                       </div>
                   ) : (
@@ -766,11 +770,13 @@ const Projects = () => {
                     <div className="project-actions">
                       {project.github && (
                           <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+                            <FiGithub aria-hidden="true" />
                             View Code
                           </a>
                       )}
                       {project.demo && (
                           <a href={project.demo} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                            <FiExternalLink aria-hidden="true" />
                             Live Demo
                           </a>
                       )}
@@ -784,11 +790,17 @@ const Projects = () => {
           {lightbox.open && (
               <div className="lightbox-overlay" onClick={closeLightbox} role="dialog" aria-modal="true" aria-label="Image viewer">
                 <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-                  <button className="lightbox-close" onClick={closeLightbox} aria-label="Close">×</button>
+                  <button className="lightbox-close" onClick={closeLightbox} aria-label="Close">
+                    <FiX aria-hidden="true" />
+                  </button>
                   {lightbox.images.length > 1 && (
                       <>
-                        <button className="lightbox-nav lightbox-prev" onClick={lightboxPrev} aria-label="Previous image">←</button>
-                        <button className="lightbox-nav lightbox-next" onClick={lightboxNext} aria-label="Next image">→</button>
+                        <button className="lightbox-nav lightbox-prev" onClick={lightboxPrev} aria-label="Previous image">
+                          <FiChevronLeft aria-hidden="true" />
+                        </button>
+                        <button className="lightbox-nav lightbox-next" onClick={lightboxNext} aria-label="Next image">
+                          <FiChevronRight aria-hidden="true" />
+                        </button>
                       </>
                   )}
                   <img

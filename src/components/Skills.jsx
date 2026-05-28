@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
+import { FiBarChart2, FiCode, FiSettings, FiTool, FiUsers } from 'react-icons/fi';
 import '../styles/Skills.css';
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState('programming');
   const [animatedValues, setAnimatedValues] = useState({});
 
-  let skillCategories;
-  skillCategories = {
+  const skillCategories = useMemo(() => ({
     programming: {
       title: "Programming Languages",
-      icon: "💻",
+      icon: FiCode,
       skills: [
         {
           name: "Python",
@@ -41,7 +41,7 @@ const Skills = () => {
     },
     frameworks: {
       title: "Frameworks & Technologies",
-      icon: "🛠️",
+      icon: FiTool,
       skills: [
         {
           name: "React",
@@ -78,7 +78,7 @@ const Skills = () => {
     },
     dataScience: {
       title: "Data Science & Analytics",
-      icon: "📊",
+      icon: FiBarChart2,
       skills: [
         {
           name: "Statistical Analysis",
@@ -115,7 +115,7 @@ const Skills = () => {
     },
     tools: {
       title: "Development Tools & Software",
-      icon: "⚙️",
+      icon: FiSettings,
       skills: [
         {
           name: "IntelliJ IDEA",
@@ -147,7 +147,7 @@ const Skills = () => {
     },
     soft: {
       title: "Professional Skills",
-      icon: "🤝",
+      icon: FiUsers,
       skills: [
         {
           name: "Problem Solving",
@@ -187,7 +187,7 @@ const Skills = () => {
         }
       ]
     }
-  };
+  }), []);
 
   // Animate skill bars when component mounts or category changes
   useEffect(() => {
@@ -226,23 +226,29 @@ const Skills = () => {
 
           {/* Skills Navigation */}
           <div className="skills-nav">
-            {Object.entries(skillCategories).map(([key, category]) => (
-                <button
-                    key={key}
-                    className={`nav-btn ${activeCategory === key ? 'active' : ''}`}
-                    onClick={() => setActiveCategory(key)}
-                >
-                  <span className="nav-icon">{category.icon}</span>
-                  <span className="nav-text">{category.title}</span>
-                </button>
-            ))}
+            {Object.entries(skillCategories).map(([key, category]) => {
+              const CategoryIcon = category.icon;
+              return (
+                  <button
+                      key={key}
+                      className={`nav-btn ${activeCategory === key ? 'active' : ''}`}
+                      onClick={() => setActiveCategory(key)}
+                  >
+                    <span className="nav-icon"><CategoryIcon aria-hidden="true" /></span>
+                    <span className="nav-text">{category.title}</span>
+                  </button>
+              );
+            })}
           </div>
 
           {/* Skills Content */}
           <div className="skills-content">
             <div className="category-header">
               <h3>
-                <span className="category-icon">{skillCategories[activeCategory].icon}</span>
+                {(() => {
+                  const CategoryIcon = skillCategories[activeCategory].icon;
+                  return <span className="category-icon"><CategoryIcon aria-hidden="true" /></span>;
+                })()}
                 {skillCategories[activeCategory].title}
               </h3>
             </div>

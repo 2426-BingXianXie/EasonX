@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
+import { FiDownload, FiMenu, FiX } from 'react-icons/fi';
 import '../styles/Header.css';
+import resumePDF from '../assets/documents/Eason_Xie_Resume.pdf';
+
+const navItems = [
+  { id: 'hero', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'contact', label: 'Contact' }
+];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,42 +30,45 @@ const Header = () => {
   return (
       <header className="header">
         <div className="header-container">
-          {/* Logo/Name */}
-          <div className="logo">
-            <h2>Eason Xie</h2>
-            <span className="title">Data Science & Full-Stack Developer</span>
-          </div>
+          <button className="logo" onClick={() => scrollToSection('hero')} aria-label="Back to top">
+            <span className="logo-mark">EX</span>
+            <span className="logo-copy">
+              <strong>Eason Xie</strong>
+              <span>Data + Full-Stack</span>
+            </span>
+          </button>
 
-          {/* Desktop Navigation */}
           <nav className="desktop-nav">
             <ul>
-              <li><button onClick={() => scrollToSection('hero')}>Home</button></li>
-              <li><button onClick={() => scrollToSection('about')}>About</button></li>
-              <li><button onClick={() => scrollToSection('experience')}>Experience</button></li>
-              <li><button onClick={() => scrollToSection('projects')}>Projects</button></li>
-              <li><button onClick={() => scrollToSection('skills')}>Skills</button></li>
-              <li><button onClick={() => scrollToSection('contact')}>Contact</button></li>
+              {navItems.map(item => (
+                  <li key={item.id}>
+                    <button onClick={() => scrollToSection(item.id)}>{item.label}</button>
+                  </li>
+              ))}
             </ul>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button className="mobile-menu-btn" onClick={toggleMenu}>
-          <span className={`hamburger ${isMenuOpen ? 'active' : ''}`}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
+          <a className="header-resume" href={resumePDF} download="Eason_Xie_Resume.pdf">
+            <FiDownload aria-hidden="true" />
+            <span>Resume</span>
+          </a>
+
+          <button
+              className="mobile-menu-btn"
+              onClick={toggleMenu}
+              aria-expanded={isMenuOpen}
+              aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          >
+            {isMenuOpen ? <FiX aria-hidden="true" /> : <FiMenu aria-hidden="true" />}
           </button>
 
-          {/* Mobile Navigation */}
           <nav className={`mobile-nav ${isMenuOpen ? 'open' : ''}`}>
             <ul>
-              <li><button onClick={() => scrollToSection('hero')}>Home</button></li>
-              <li><button onClick={() => scrollToSection('about')}>About</button></li>
-              <li><button onClick={() => scrollToSection('experience')}>Experience</button></li>
-              <li><button onClick={() => scrollToSection('projects')}>Projects</button></li>
-              <li><button onClick={() => scrollToSection('skills')}>Skills</button></li>
-              <li><button onClick={() => scrollToSection('contact')}>Contact</button></li>
+              {navItems.map(item => (
+                  <li key={item.id}>
+                    <button onClick={() => scrollToSection(item.id)}>{item.label}</button>
+                  </li>
+              ))}
             </ul>
           </nav>
         </div>

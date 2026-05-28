@@ -14,18 +14,18 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 if (import.meta.env.DEV) {
   // Add development console greeting
   console.log(
-      '%c👋 Welcome to Eason Xie\'s Portfolio!',
-      'color: #2563eb; font-size: 16px; font-weight: bold;'
+      '%cWelcome to Eason Xie\'s Portfolio',
+      'color: #0f8b8d; font-size: 16px; font-weight: bold;'
   );
 
   console.log(
-      '%c🚀 Built with React + Vite',
-      'color: #10b981; font-size: 14px;'
+      '%cBuilt with React + Vite',
+      'color: #e94f37; font-size: 14px;'
   );
 
   console.log(
-      '%c📧 Contact: 2153366728xie@gmail.com',
-      'color: #6b7280; font-size: 12px;'
+      '%cContact: xie.bingx@northeastern.edu',
+      'color: #59645e; font-size: 12px;'
   );
 }
 

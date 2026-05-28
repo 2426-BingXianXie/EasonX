@@ -6,6 +6,7 @@ import Experience from './components/Experience.jsx';
 import Projects from './components/Projects.jsx';
 import Skills from './components/Skills.jsx';
 import Contact from './components/Contact.jsx';
+import { FiGithub, FiLinkedin, FiMail, FiPhone } from 'react-icons/fi';
 import './App.css';
 
 function App() {
@@ -40,10 +41,10 @@ function App() {
               </div>
               <div className="footer-right">
                 <div className="footer-social">
-                  <a href="mailto:2153366728xie@gmail.com" aria-label="Email">📧</a>
-                  <a href="tel:+18572729958" aria-label="Phone">📱</a>
-                  <a href="https://linkedin.com/in/your-linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">💼</a>
-                  <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub">💻</a>
+                  <a href="mailto:xie.bingx@northeastern.edu" aria-label="Email"><FiMail aria-hidden="true" /></a>
+                  <a href="tel:+18572729958" aria-label="Phone"><FiPhone aria-hidden="true" /></a>
+                  <a href="https://www.linkedin.com/in/bingxian-xie" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FiLinkedin aria-hidden="true" /></a>
+                  <a href="https://www.github.com/2426-BingXianXie" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><FiGithub aria-hidden="true" /></a>
                 </div>
               </div>
             </div>

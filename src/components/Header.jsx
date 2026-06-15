@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { FiDownload, FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX } from 'react-icons/fi';
 import '../styles/Header.css';
-import resumePDF from '../assets/documents/Eason_Xie_Resume.pdf';
+import ResumeMenu from './ResumeMenu';
 
 const navItems = [
   { id: 'hero', label: 'Home' },
@@ -48,10 +48,7 @@ const Header = () => {
             </ul>
           </nav>
 
-          <a className="header-resume" href={resumePDF} download="Eason_Xie_Resume.pdf">
-            <FiDownload aria-hidden="true" />
-            <span>Resume</span>
-          </a>
+          <ResumeMenu triggerClassName="header-resume" label="Resume" />
 
           <button
               className="mobile-menu-btn"

@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import {
   FiArrowDown,
-  FiDownload,
   FiGithub,
   FiLinkedin,
   FiMail,
@@ -11,19 +10,11 @@ import {
 } from 'react-icons/fi';
 import '../styles/Hero.css';
 import profilePhoto from '../assets/images/profile-photo.jpg';
-import resumePDF from '../assets/documents/Eason_Xie_Resume.pdf';
+import ResumeMenu from './ResumeMenu';
 
 const MotionDiv = motion.div;
 
 const Hero = () => {
-  const downloadResume = () => {
-    // Create a link to download the resume PDF
-    const link = document.createElement('a');
-    link.href = resumePDF;
-    link.download = 'Eason_Xie_Resume.pdf';
-    link.click();
-  };
-
   const scrollToContact = () => {
     const element = document.getElementById('contact');
     if (element) {
@@ -87,10 +78,7 @@ const Hero = () => {
 
               {/* Call to Action Buttons */}
               <div className="hero-actions">
-                <button className="btn btn-primary" onClick={downloadResume}>
-                  <FiDownload aria-hidden="true" />
-                  Download Resume
-                </button>
+                <ResumeMenu triggerClassName="btn btn-primary" label="Download Resume" />
                 <button className="btn btn-secondary" onClick={scrollToContact}>
                   <FiMessageCircle aria-hidden="true" />
                   Get In Touch

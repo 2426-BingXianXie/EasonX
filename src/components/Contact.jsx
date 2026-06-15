@@ -12,7 +12,7 @@ import {
   FiZap
 } from 'react-icons/fi';
 import '../styles/Contact.css';
-import resumePDF from '../assets/documents/Eason_Xie_Resume.pdf';
+import { resumes } from '../data/resumes';
 
 const Contact = () => {
   const contactInfo = [
@@ -56,11 +56,19 @@ const Contact = () => {
   const quickActions = [
     {
       icon: FiDownload,
-      title: 'Download Resume',
-      description: 'View my full resume',
-      link: resumePDF,
+      title: 'Resume — Software Engineering',
+      description: 'General software engineering roles',
+      link: resumes[0].file,
       color: 'blue',
-      download: true
+      download: resumes[0].download
+    },
+    {
+      icon: FiDownload,
+      title: 'Resume — Data Science / AI & ML',
+      description: 'Data science, AI & machine learning roles',
+      link: resumes[1].file,
+      color: 'blue',
+      download: resumes[1].download
     },
     {
       icon: FiMail,
@@ -163,7 +171,7 @@ const Contact = () => {
                         className={`quick-action-card ${action.color}`}
                         target={action.link.startsWith('http') ? '_blank' : '_self'}
                         rel="noopener noreferrer"
-                        download={action.download ? 'Eason_Xie_Resume.pdf' : undefined}
+                        download={action.download || undefined}
                     >
                       <div className="quick-action-icon"><ActionIcon aria-hidden="true" /></div>
                       <h4>{action.title}</h4>

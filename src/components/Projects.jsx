@@ -209,7 +209,7 @@ const Projects = () => {
         "In-app snooker rules summary panel styled to match the scoreboard and linked to a longer reference"
       ],
       github: "https://github.com/2426-BingXianXie/SnookerScoreboard",
-      demo: null,
+      demo: "https://2426-bingxianxie.github.io/SnookerScoreboard/",
       images: [scoreboardImg1, scoreboardImg2],
       imageLabels: [
         "Main scoreboard layout",

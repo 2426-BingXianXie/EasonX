@@ -208,7 +208,7 @@ const Projects = () => {
         "Undoable scoring history and configurable best-of match format that can be reset without changing the room",
         "In-app snooker rules summary panel styled to match the scoreboard and linked to a longer reference"
       ],
-      github: "https://github.com/2426-BingXianXie/SnookerScoreboard",
+      github: null,
       demo: "https://2426-bingxianxie.github.io/SnookerScoreboard/",
       images: [scoreboardImg1, scoreboardImg2],
       imageLabels: [

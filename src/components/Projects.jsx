@@ -175,8 +175,8 @@ const Projects = () => {
         "Surrender, save/load, hints, undo/redo",
         "9×9, 13×13, 19×19 board sizes"
       ],
-      github: "https://github.com/2426-BingXianXie/Go-Territory-Estimator",
-      demo: null,
+      github: null,
+      demo: "https://2426-bingxianxie.github.io/Go-Territory-Estimator/",
       images: [goEstimator1, goEstimator2],
       imageLabels: [
         "Go board with territory estimation",
